@@ -37,6 +37,7 @@ function randomDuration(difficult) {
     return duration;
 }
 
+//gets a random target which will rotateX from 0deg to 90deg
 function randomTarget (level) {
     //generates a random index, depending on the number of targets
     const random = randomIndex(targets);
@@ -54,6 +55,7 @@ function randomTarget (level) {
     }, duration);
 }
 
+//when the start button is clicked, everything runs (This is the key function)
 function handleSubmit(e) {
     //this stops the form from refreshing
     e.preventDefault(); 
@@ -95,15 +97,21 @@ function handleSubmit(e) {
     this.reset(); 
 }
 
+//this handles the clicking of targets, counts and adds to DOM
 function handleScore (e) {
+    //when clicking on the target, we're isolatin for the font-awesome only
     if(!e.target.matches("i")) return;
+
+    //score is only counted if the original isClick = false, but becomes true after one click and counting stops
     if(!isClicked) score++;
     isClicked = true;
     span.textContent = score;
 }
 
+//this takes the leaderboardArray to sort it, map it and display to DOM
 function displayLeaderboard (array) {
     const display = array
+        //this method pushes the highest scores to the top and lowest to the bottom
         .sort((a,b) => {
             if(a.finalScore > b.finalScore) {
                 return -1;
@@ -112,6 +120,7 @@ function displayLeaderboard (array) {
                 return 1;
             }
         })
+        //displays the name and score to the DOM
         .map(leader => {
             return `
                 <li>${leader.name} ${leader.finalScore}</li>
@@ -120,6 +129,9 @@ function displayLeaderboard (array) {
     grabLeaderboard.innerHTML = display;
 }
 
+//display the leaderboard on page load, which should persist from local storage
 displayLeaderboard(leaderboardArray);
+
+//event listeners for forum on submit and clicking of targets
 form.addEventListener("submit", handleSubmit);
 targets.forEach(target => target.addEventListener("click", handleScore));
