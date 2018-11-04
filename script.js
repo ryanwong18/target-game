@@ -63,7 +63,7 @@ function handleSubmit(e) {
     const leaderboard = {};
     const name = userName.value;
 
-    //resets gameOver to false boolean everytime start button is hit
+    //resets the gameOver boolean, countTime increment and displays score to zero
     gameOver = false;
     countTime = 0;
     score = 0;
@@ -87,6 +87,8 @@ function handleSubmit(e) {
                 leaderboardArray.push(leaderboard);
                 localStorage.setItem("items", JSON.stringify(leaderboardArray));
                 displayLeaderboard(leaderboardArray);
+
+                //after the game is over, resets score to zero and displays
                 score = 0;
                 span.textContent = score;
             }, 2000);
