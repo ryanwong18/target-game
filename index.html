@@ -12,27 +12,29 @@
 <body>
     <header>
         <div class="wrapper">
-            <h1>Howdy Partner! Step right up to take a shot</h1>
-            <h2>Your Current Score is <span>0</span></h2>
-
-            <form action="">
-                <label for="user">Name</label>
-                <input type="text" id ="user">
-
-                <label for="easy">Easy</label>
-                <input type="radio" id="easy" name="challenge" value="easy">
-
-                <label for="medium">Medium</label>
-                <input type="radio" id="medium" name="challenge" value="medium">
-
-                <label for="hard">Hard</label>
-                <input type="radio" id="hard" name="challenge" value="hard">
-
-                <input type="submit" value="START!">
-            </form>
+            <div class="settings">
+                <h1>Howdy Partner! Step right up!</h1>
+                <h2>Your Score is <span>0</span></h2>
+    
+                <form action="">
+                    <label for="user">Name</label>
+                    <input type="text" id ="user" required maxlength="15">
+    
+                    <label for="easy">Easy</label>
+                    <input type="radio" id="easy" name="challenge" value="easy">
+    
+                    <label for="medium">Medium</label>
+                    <input type="radio" id="medium" name="challenge" value="medium">
+    
+                    <label for="hard">Hard</label>
+                    <input type="radio" id="hard" name="challenge" value="hard">
+    
+                    <input type="submit" value="START!">
+                </form>
+            </div>
 
             <div class="leaderboard">
-                <h3>Current Leaderboard</h3>
+                <h3>Leaderboard</h3>
                 <ul></ul>
                 <button>Clear Leaderboard</button>
             </div>

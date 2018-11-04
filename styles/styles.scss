@@ -15,7 +15,8 @@ body {
     height:100vh;
     width:100%;
     font-family: 'Arbutus', cursive;
-    color:white;
+    color:rgb(157, 205, 175);
+    text-shadow:2px 2px 2px black;
 }
 
 .wrapper {
@@ -25,6 +26,57 @@ body {
 
 h1 {
     margin-top:0;
+    text-align: center;
+    font-size:3rem;
+    margin-bottom:20px;
+}
+
+h2 {
+    text-align: center;
+    font-size:2.5rem;
+    margin-bottom:20px;
+}
+
+h3 {
+    margin-top:0;
+    font-size:2.5rem;
+}
+
+form {
+    text-align:center;
+    font-size:1.5rem;
+    padding-top:50px;
+}
+
+header {
+    .wrapper {
+        display:flex;
+    }
+
+    .settings, .leaderboard {
+        padding:50px;
+        flex-grow:1;
+    }
+
+    ul {
+        min-height:100px;
+        padding-left:0;
+        margin-top:0;
+        margin-bottom:0;
+    }
+
+    li {
+        list-style-type:none;
+        font-size:2rem;
+    }
+
+    button {
+        font-size:1.5rem;
+    }
+}
+
+main {
+    padding-top:50px;
 }
 
 .targetzone {
@@ -38,6 +90,8 @@ h1 {
         justify-content: center;
         transform: rotateX(90deg);
         transition: all 0.3s;
+        margin-top:20px;
+        margin-bottom: 20px;
     }
 
     .targets.active {
@@ -54,5 +108,6 @@ h1 {
         height:150px;
         background-color:white;
         border-radius: 50%;
+        text-shadow:none;
     }
 }

@@ -66,6 +66,8 @@ function handleSubmit(e) {
     //resets gameOver to false boolean everytime start button is hit
     gameOver = false;
     countTime = 0;
+    score = 0;
+    span.textContent = score;
 
     //looks through the radio buttons for the checked one and returns the value. If none are checked, default to medium
     const level = difficulty.filter(value => value.checked)
@@ -86,6 +88,7 @@ function handleSubmit(e) {
                 localStorage.setItem("items", JSON.stringify(leaderboardArray));
                 displayLeaderboard(leaderboardArray);
                 score = 0;
+                span.textContent = score;
             }, 2000);
         }
         isClicked = false;
