@@ -5,6 +5,7 @@ const difficulty = Array.from(document.querySelectorAll("[type=radio]"));
 const targets = Array.from(document.querySelectorAll(".targets")); 
 const span = document.querySelector("span");
 const grabLeaderboard = document.querySelector(".leaderboard ul");
+const resetLeaderboard = document.querySelector(".leaderboard button");
 let score = 0;
 let finalScore = 0;
 let isClicked = false;
@@ -129,9 +130,17 @@ function displayLeaderboard (array) {
     grabLeaderboard.innerHTML = display;
 }
 
+//removes items from local storage and deletes contents from leaderboardArray and displays results
+function handleReset () {
+    localStorage.removeItem("items");
+    leaderboardArray.length = 0;
+    displayLeaderboard(leaderboardArray.splice());
+}
+
 //display the leaderboard on page load, which should persist from local storage
 displayLeaderboard(leaderboardArray);
 
 //event listeners for forum on submit and clicking of targets
 form.addEventListener("submit", handleSubmit);
 targets.forEach(target => target.addEventListener("click", handleScore));
+resetLeaderboard.addEventListener("click", handleReset);
