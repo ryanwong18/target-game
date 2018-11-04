@@ -55,6 +55,17 @@ function randomTarget (level) {
     }, duration);
 }
 
+//this function sets the static/beginning state of the targets
+function staticTarget () {
+    //beginning state of static, where the rotateX is 90deg or "open"
+    targets.forEach(target => target.classList.add("static"));
+
+    //after 1 sec, the targets disappear and game begins
+    setTimeout(() => {
+        targets.forEach(target => target.classList.remove("static"));
+    },1000)
+}
+
 //when the start button is clicked, everything runs (This is the key function)
 function handleSubmit(e) {
     //this stops the form from refreshing
@@ -62,6 +73,9 @@ function handleSubmit(e) {
     // clearInterval(gameOn);
     const leaderboard = {};
     const name = userName.value;
+
+    //this is a function call where the original target state has the targets shown, then after 1sec, the targets disappear and the game begins
+    staticTarget();
 
     //resets the gameOver boolean, countTime increment and displays score to zero
     gameOver = false;
@@ -73,12 +87,11 @@ function handleSubmit(e) {
     const level = difficulty.filter(value => value.checked)
         .map(value => value.value)
         .toString() || "medium";
-    
-    //right after start button, run the function once, then let interval kick in
-    randomTarget(level);
 
     //loops through the randomTarget function until countTime has incremented to 5
     const gameOn = setInterval(() => {
+        countTime++;
+        console.log(countTime);
         if(countTime === 5) {
             clearInterval(gameOn);
             setTimeout(() => {
@@ -87,14 +100,16 @@ function handleSubmit(e) {
                 leaderboardArray.push(leaderboard);
                 localStorage.setItem("items", JSON.stringify(leaderboardArray));
                 displayLeaderboard(leaderboardArray);
-
+                
                 //after the game is over, resets score to zero and displays
                 score = 0;
                 span.textContent = score;
+                
+                //add static class back to targets
+                targets.forEach(target => target.classList.add("static"));
             }, 2000);
         }
         isClicked = false;
-        countTime++;
         randomTarget(level);
     },2000);
 
@@ -104,6 +119,9 @@ function handleSubmit(e) {
 
 //this handles the clicking of targets, counts and adds to DOM
 function handleScore (e) {
+    //if the div has a class of static, don't allow click to increase score
+    if(this.matches(".static")) return;
+
     //when clicking on the target, we're isolatin for the font-awesome only
     if(!e.target.matches("i")) return;
 

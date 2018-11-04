@@ -55,8 +55,12 @@ header {
         flex-grow:1;
     }
 
+    span {
+        font-size:3rem;
+    }
+
     ul {
-        min-height:100px;
+        min-height:106px;
         padding-left:0;
         margin-top:0;
         margin-bottom:0;
@@ -89,6 +93,10 @@ main {
         transition: all 0.3s;
         margin-top:20px;
         margin-bottom: 20px;
+    }
+
+    .targets.static {
+        transform: rotateX(0deg);
     }
 
     .targets.active {
