@@ -1,7 +1,6 @@
 const form = document.querySelector("form");
 const userName = document.querySelector("[type=text]");
 const difficulty = Array.from(document.querySelectorAll("[type=radio]"));
-//using Array.from to convert node list to array
 const targets = Array.from(document.querySelectorAll(".targets")); 
 const span = document.querySelector("span");
 const grabLeaderboard = document.querySelector(".leaderboard ul");
