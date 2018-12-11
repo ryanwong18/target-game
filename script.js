@@ -57,7 +57,7 @@ function randomTarget (level) {
 
 //this function sets the static/beginning state of the targets
 function staticTarget () {
-    //beginning state of static, where the rotateX is 90deg or "open"
+    //beginning state of static, where the rotateX is 0deg or "open"
     targets.forEach(target => target.classList.add("static"));
 
     //after 1 sec, the targets disappear and game begins
@@ -91,7 +91,6 @@ function handleSubmit(e) {
     //loops through the randomTarget function until countTime has incremented to 5
     const gameOn = setInterval(() => {
         countTime++;
-        console.log(countTime);
         if(countTime === 5) {
             clearInterval(gameOn);
             setTimeout(() => {
@@ -122,7 +121,7 @@ function handleScore (e) {
     //if the div has a class of static, don't allow click to increase score
     if(this.matches(".static")) return;
 
-    //when clicking on the target, we're isolatin for the font-awesome only
+    //when clicking on the target, we're isolating for the font-awesome only
     if(!e.target.matches("i")) return;
 
     //score is only counted if the original isClick = false, but becomes true after one click and counting stops
@@ -156,7 +155,7 @@ function displayLeaderboard (array) {
 function handleReset () {
     localStorage.removeItem("items");
     leaderboardArray.length = 0;
-    displayLeaderboard(leaderboardArray.splice());
+    displayLeaderboard(leaderboardArray);
 }
 
 //display the leaderboard on page load, which should persist from local storage
